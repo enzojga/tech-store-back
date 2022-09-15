@@ -8,12 +8,6 @@ const usersSchema = joi.object({
     email: joi.string().email({ minDomainSegments: 2, tlds:{allow: ['com','net'] }}).required()
 });
 
-export async function validateUser(req, res, next) {
-	const validation = usersSchema.validate(req.body);
-
-  if (validation.error) {
-    return res.sendStatus(422);
-  }
-
-  next();
+export {
+    usersSchema
 }
