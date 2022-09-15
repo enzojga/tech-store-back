@@ -7,13 +7,10 @@ const usersSchema = joi.object({
     cpf:joi.string().required(),
     email: joi.string().email({ minDomainSegments: 2, tlds:{allow: ['com','net'] }}).required()
 });
-
-export async function validateUser(req, res, next) {
-	const validation = usersSchema.validate(req.body);
-
-  if (validation.error) {
-    return res.sendStatus(422);
-  }
-
-  next();
+const usersLoginSchema = joi.object({ 
+    password: joi.required(),
+    email: joi.string().email({ minDomainSegments: 2, tlds:{allow: ['com','net'] }}).required()
+});
+export {
+    usersSchema,usersLoginSchema
 }
