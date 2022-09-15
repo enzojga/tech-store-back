@@ -1,6 +1,9 @@
 
 import db from '../database/db.js';
 import bcrypt from 'bcrypt'
+import {v4 as uuid} from "uuid";
+
+
 
 export async function signUp(req,res){
     try{
@@ -26,6 +29,32 @@ export async function signUp(req,res){
         })
         console.log(response,'UAHSUAHSAUSAUSHUA')
         return res.status(201).send('usuário registrado com sucesso');
+    }catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+export async function signIn(req,res){
+    try{
+
+        const loginUser = req.body;
+
+        const user = await db.collection('users').findOne({email: loginUser.email})
+        const passwordValid = bcrypt.compareSync(loginUser.password, user.password);
+
+
+        if(user && passwordValid){
+            const token= uuid();
+            await db.collection('sessions').insertOne({
+                token: token,
+                user: user._id
+            })
+
+            return res.status(201).send({token: token, name: user.name});
+        } else {
+            return res.status(404).send('email/senha inválidos')
+        }
+
     }catch (error) {
         return res.status(500).send(error.message);
     }
