@@ -23,4 +23,5 @@ async function getProducts(req,res){
         console.log(err);
     }
 }
-export { creatProduct,getProducts }
+
+export { creatProduct, getProducts }
