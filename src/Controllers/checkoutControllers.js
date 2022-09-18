@@ -30,18 +30,15 @@ export async function confirmPayment (req,res){
         await db.collection('payment').insertOne({
             numberCard: userData.numberCard,
             cv: userData.cv,
-            validadeCard: userData.validadeCard,
+            cardExpiration: userData.cardExpiration,
             name: userData.name,
-            email:userData.email,
             value: userData.value,
-            description: userData.description,
             date: day
         });
 
         const resume = {
             status: "Compra efetuada",
             value: userData.value,
-            description: userData.description,
             date: day
         }
         return res.status(200).send(resume)
