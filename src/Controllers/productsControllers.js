@@ -5,7 +5,7 @@ async function creatProduct(req, res){
         console.log(req.body);
         const {description, image, price, name, category} = req.body;
         console.log(description, image, price, name, category);
-        await db.collection("products").insertOne({description, image, price, name, category});
+        await db.collection("products").insertOne({description, image, price, name, category, productId: Date.now()});
         res.sendStatus(201);
     }catch(err){
         console.log(err);
