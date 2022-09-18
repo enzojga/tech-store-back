@@ -12,6 +12,6 @@ try {
     console.error(err.message);
 }
 
-   const db = mongoClient.db(process.env.DB_NAME);
+   const db = mongoClient.db("mongo");
 
    export default db;
