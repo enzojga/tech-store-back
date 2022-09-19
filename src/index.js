@@ -1,15 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import router from './Routes/indexRoutes.js';
-import productRouter from './routes/productRoute.js';
-
+import { getProducts,getProductsById } from './controllers/productControler.js';
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 app.use(router);
-app.use(productRouter);
+productRouter.get("/idProduct/:id", getProductsById);
+productRouter.get("/getProduct", getProducts);
 
 const port = process.env.PORT || 5000;
 
