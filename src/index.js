@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import router from './Routes/indexRoutes.js';
-import { getProducts } from './controllers/productControler.js';
 const app = express();
 
 app.use(cors());
@@ -22,7 +21,7 @@ productRouter.get("/idProduct/:id", async (req, res) => {
 });
 productRouter.get("/getProduct", async (req, res) => {
     try {
-        
+
         const products = await db.collection("products").find({}).toArray();
         res.send(products);
 
