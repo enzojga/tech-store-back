@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import router from './Routes/indexRoutes.js';
-import productRouter from './routes/productsRoutes.js';
+import productRouter from './routes/productRoute.js';
 
 const app = express();
 
