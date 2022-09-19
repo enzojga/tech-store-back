@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import router from './Routes/indexRoutes.js';
+import db from './database/db.js';
 const app = express();
 
 app.use(cors());
