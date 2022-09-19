@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(router);
-productRouter.get("/idProduct/:id", async (req, res) => {
+app.get("/idProduct/:id", async (req, res) => {
     try {
 
         const product = await db.collection("products").findOne({ productId: Number(req.params.id) });
@@ -20,7 +20,7 @@ productRouter.get("/idProduct/:id", async (req, res) => {
         console.log(err);
     }
 });
-productRouter.get("/getProduct", async (req, res) => {
+app.get("/getProduct", async (req, res) => {
     try {
 
         const products = await db.collection("products").find({}).toArray();
